@@ -100,7 +100,7 @@ These additional steps below are OPTIONAL if you want to do a FULL UN-INSTALL.
 | --no-mods | Launch game without loading any Plugins Mods |
 | --quitfix | Fixes the Hanging Process Issue with some Games |
 | --melonloader.consoleontop | Forces the Console to always stay on-top of all other Applications |
-| --melonloader.hideconsole | Hides the Normal Console |
+| --melonloader.hideconsole | Hides the Console |
 | --melonloader.hidewarnings | Hides Warnings from Displaying |
 | --melonloader.debug | Debug Mode |
 | --melonloader.dab | Debug Analytics Blocker |
