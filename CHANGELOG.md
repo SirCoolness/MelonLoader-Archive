@@ -202,6 +202,7 @@
 178. Fixed Issue with MelonUtils.IsVRChat causing Null Reference Exception.
 179. Fixed Issue with MelonUtils.IsBONEWORKS causing Null Reference Exception.
 180. Fixed Issue with Native Unity Logs showing when not in Debug Mode.
+181. Fixed Issue with Certain Unity Games when the EXE has no Information Attached.
 
 ---
 

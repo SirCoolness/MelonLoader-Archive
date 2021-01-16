@@ -119,11 +119,9 @@ std::string Game::ReadUnityVersionFromFileInfo()
 {
 	const char* output = Core::GetFileInfoProductVersion(ApplicationPath);
 	if (output == NULL)
-		return NULL;
+		return std::string();
 	std::string outputstr = output;
-	//Logger::Msg(outputstr.c_str());
 	outputstr = outputstr.substr(0, outputstr.find_last_of('.'));
-	//Logger::Msg(outputstr.c_str());
 	return outputstr;
 }
 
@@ -131,10 +129,10 @@ std::string Game::ReadUnityVersionFromGlobalGameManagers()
 {
 	std::string globalgamemanagerspath = std::string(DataPath) + "\\globalgamemanagers";
 	if (!Core::FileExists(globalgamemanagerspath.c_str()))
-		return NULL;
+		return std::string();
 	std::ifstream globalgamemanagersstream(globalgamemanagerspath, std::ios::binary);
 	if (!globalgamemanagersstream.is_open() || !globalgamemanagersstream.good())
-		return NULL;
+		return std::string();
 	std::vector<char> filedata((std::istreambuf_iterator<char>(globalgamemanagersstream)), (std::istreambuf_iterator<char>()));
 	globalgamemanagersstream.close();
 	std::stringstream output;
