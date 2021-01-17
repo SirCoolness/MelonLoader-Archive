@@ -7,7 +7,6 @@ class Core
 public:
 	static HINSTANCE Bootstrap;
 	static char* Path;
-	static const char* Version;
 	static bool QuitFix;
 	static bool Initialize();
 	static bool DirectoryExists(const char* path);
@@ -17,6 +16,7 @@ public:
 	static void KillCurrentProcess();
 	static const char* GetFileInfoProductName(const char* path);
 	static const char* GetFileInfoProductVersion(const char* path);
+	static const char* GetVersionStr();
 
 private:
 	static const char* GetOSVersion();

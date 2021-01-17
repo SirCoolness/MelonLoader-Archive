@@ -18,8 +18,9 @@
 
 HINSTANCE Core::Bootstrap = NULL;
 char* Core::Path = NULL;
-const char* Core::Version = "v0.3.0";
 bool Core::QuitFix = false;
+
+const char* Core::GetVersionStr() { return ("MelonLoader " + std::string("v0.3.0") + " ALPHA Pre-Release").c_str(); }
 
 bool Core::Initialize()
 {
@@ -65,7 +66,7 @@ void Core::WelcomeMessage()
 	if (Debug::Enabled)
 		Logger::WriteSpacer();
 	Logger::Msg("------------------------------");
-	Logger::Msg(("MelonLoader " + std::string(Version) + " Open-Beta").c_str());
+	Logger::Msg(GetVersionStr());
 	Logger::Msg(("Hash Code: " + std::to_string(HashCode::Hash)).c_str());
 	Logger::Msg((std::string("OS: ") + GetOSVersion()).c_str());
 	Logger::Msg("------------------------------");
