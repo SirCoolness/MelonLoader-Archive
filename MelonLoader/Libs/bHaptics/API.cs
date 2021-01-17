@@ -101,7 +101,6 @@ namespace MelonLoader
                 case DeviceType.Tactosy_hands:
                     return isLeft ? PositionType.HandL : PositionType.HandR;
             }
-
             return PositionType.Head;
         }
 
