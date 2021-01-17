@@ -211,6 +211,7 @@
 187. Added bHaptics.DeviceType.
 188. Added bHaptics.IsDeviceConnected.
 189. Added bHaptics.DeviceTypeToPositionType.
+190. Added bHaptics.DeviceType Methods.
 
 ---
 
