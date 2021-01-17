@@ -27,8 +27,8 @@ namespace MelonLoader
 
         public static bool IsPlaying() => (!_waserror && bHaptics_NativeLibrary.IsPlaying());
         public static bool IsPlaying(string key) => (!_waserror && bHaptics_NativeLibrary.IsPlayingKey(key));
-        public static bool IsConnected(PositionType type) => (!_waserror && bHaptics_NativeLibrary.IsDevicePlaying(type));
-        public static bool IsConnected(DeviceType type, bool isLeft = true) => (!_waserror && bHaptics_NativeLibrary.IsDevicePlaying(DeviceTypeToPositionType(type, isLeft)));
+        public static bool IsDeviceConnected(PositionType type) => (!_waserror && bHaptics_NativeLibrary.IsDevicePlaying(type));
+        public static bool IsDeviceConnected(DeviceType type, bool isLeft = true) => (!_waserror && bHaptics_NativeLibrary.IsDevicePlaying(DeviceTypeToPositionType(type, isLeft)));
         public static bool IsFeedbackRegistered(string key) => (!_waserror && bHaptics_NativeLibrary.IsFeedbackRegistered(key));
 
         public static void RegisterTactFileStr(string key, string tactFileStr) { if (!_waserror) bHaptics_NativeLibrary.RegisterFeedbackFromTactFile(key, tactFileStr); }

@@ -209,7 +209,7 @@
 185. Added Preload Support Module.
 186. Fixed Issue with Unity Games not having System.Core.dll.
 187. Added bHaptics.DeviceType.
-188. Added bHaptics.IsConnected.
+188. Added bHaptics.IsDeviceConnected.
 189. Added bHaptics.DeviceTypeToPositionType.
 
 ---
