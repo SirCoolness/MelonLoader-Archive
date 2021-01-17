@@ -105,6 +105,8 @@ bool Game::ReadUnityVersion()
 	if (version.empty() || (strstr(version.c_str(), ".") == NULL))
 		version = ReadUnityVersionFromGlobalGameManagers();
 	if (version.empty() || (strstr(version.c_str(), ".") == NULL))
+		version = ReadUnityVersionFromMainData();
+	if (version.empty() || (strstr(version.c_str(), ".") == NULL))
 	{
 		Assertion::ThrowInternalFailure("Failed to Read Unity Version from File Info or globalgamemanagers!");
 		return false;
@@ -135,6 +137,29 @@ std::string Game::ReadUnityVersionFromGlobalGameManagers()
 		return std::string();
 	std::vector<char> filedata((std::istreambuf_iterator<char>(globalgamemanagersstream)), (std::istreambuf_iterator<char>()));
 	globalgamemanagersstream.close();
+	std::stringstream output;
+	int i = 22;
+	while (filedata[i] != NULL)
+	{
+		char bit = filedata[i];
+		if (bit == 0x00)
+			break;
+		output << filedata[i];
+		i++;
+	}
+	return output.str();
+}
+
+std::string Game::ReadUnityVersionFromMainData()
+{
+	std::string maindatapath = std::string(DataPath) + "\\mainData";
+	if (!Core::FileExists(maindatapath.c_str()))
+		return std::string();
+	std::ifstream maindatastream(maindatapath, std::ios::binary);
+	if (!maindatastream.is_open() || !maindatastream.good())
+		return std::string();
+	std::vector<char> filedata((std::istreambuf_iterator<char>(maindatastream)), (std::istreambuf_iterator<char>()));
+	maindatastream.close();
 	std::stringstream output;
 	int i = 20;
 	while (filedata[i] != NULL)

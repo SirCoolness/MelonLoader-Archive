@@ -21,4 +21,5 @@ private:
 	static bool ReadUnityVersion();
 	static std::string ReadUnityVersionFromFileInfo();
 	static std::string ReadUnityVersionFromGlobalGameManagers();
+	static std::string ReadUnityVersionFromMainData();
 };
