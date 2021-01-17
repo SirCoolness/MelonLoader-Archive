@@ -7,10 +7,12 @@
 #include "../Utils/Logger.h"
 
 char* BaseAssembly::Path = NULL;
+char* BaseAssembly::PreloadPath = NULL;
 Mono::Method* BaseAssembly::Mono_Start = NULL;
 
 bool BaseAssembly::Initialize()
 {
+	Preload();
 	Debug::Msg("Initializing Base Assembly...");
 	Mono::Assembly* assembly = Mono::Exports::mono_domain_assembly_open(Mono::domain, Path);
 	if (assembly == NULL)
@@ -54,6 +56,47 @@ bool BaseAssembly::Initialize()
 	if (Debug::Enabled)
 		Logger::WriteSpacer();
 	return true;
+}
+
+void BaseAssembly::Preload()
+{
+	if (Game::IsIl2Cpp || !Mono::IsOldMono)
+		return;
+
+	std::string PreloadAssemblyPath = std::string(Game::BasePath) + "\\MelonLoader\\Dependencies\\SupportModules\\Preload.dll";
+	if (!Game::IsIl2Cpp && !Core::FileExists(PreloadAssemblyPath.c_str()))
+	{
+		Assertion::ThrowInternalFailure("Preload.dll Does Not Exist!");
+		return;
+	}
+
+	Debug::Msg("Initializing Preload Assembly...");
+	Mono::Assembly* assembly = Mono::Exports::mono_domain_assembly_open(Mono::domain, PreloadAssemblyPath.c_str());
+	if (assembly == NULL)
+	{
+		Assertion::ThrowInternalFailure("Failed to Open Preload Assembly!");
+		return;
+	}
+	Mono::Image* image = Mono::Exports::mono_assembly_get_image(assembly);
+	if (image == NULL)
+	{
+		Assertion::ThrowInternalFailure("Failed to Get Image from Preload Assembly!");
+		return;
+	}
+	Mono::Class* klass = Mono::Exports::mono_class_from_name(image, "MelonLoader.Support", "Preload");
+	if (image == NULL)
+	{
+		Assertion::ThrowInternalFailure("Failed to Get Class from Preload Image!");
+		return;
+	}
+	Mono::Method* initialize = Mono::Exports::mono_class_get_method_from_name(klass, "Initialize", NULL);
+	if (initialize == NULL)
+	{
+		Assertion::ThrowInternalFailure("Failed to Get Initialize Method from Preload Class!");
+		return;
+	}
+	Mono::Object* exObj = NULL;
+	Mono::Exports::mono_runtime_invoke(initialize, NULL, NULL, &exObj);
 }
 
 void BaseAssembly::Start()

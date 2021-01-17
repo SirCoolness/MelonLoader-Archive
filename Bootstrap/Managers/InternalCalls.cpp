@@ -138,7 +138,10 @@ void InternalCalls::MelonUtils::AddInternalCalls()
 	Mono::AddInternalCall("MelonLoader.MelonUtils::Internal_GetGameName", GetGameName);
 	Mono::AddInternalCall("MelonLoader.MelonUtils::Internal_GetGameDeveloper", GetGameDeveloper);
 	Mono::AddInternalCall("MelonLoader.MelonUtils::Internal_GetGameDirectory", GetGameDirectory);
-	
+
+	Mono::AddInternalCall("MelonLoader.Support.Preload::IsGameIl2Cpp", IsGameIl2Cpp);
+	Mono::AddInternalCall("MelonLoader.Support.Preload::IsOldMono", IsOldMono);
+	Mono::AddInternalCall("MelonLoader.Support.Preload::GetManagedDirectory", GetManagedDirectory);
 }
 #pragma endregion
 

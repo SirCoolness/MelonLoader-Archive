@@ -203,9 +203,11 @@
 179. Fixed Issue with MelonUtils.IsBONEWORKS causing Null Reference Exception.
 180. Fixed Issue with Native Unity Logs showing when not in Debug Mode.
 181. Fixed Issue with Certain Unity Games when the EXE has no Information Attached.
-182. Fixed Issue with Games using a Unity Version older than 5.0 not Loading Mods.
-183. Fixed Issue with Games using a Unity Version older than 5.0 having mainData instead of globalgamemanagers.
+182. Fixed Issue with Unity Games using a Version older than 5.0 not Loading Mods.
+183. Fixed Issue with Unity Games using a Version older than 5.0 having mainData instead of globalgamemanagers.
 184. Fixed Issue with Support Modules with Mono Games not having UnityEngine.Transform.SetAsLastSibling.
+185. Added Preload Support Module.
+186. Fixed Issue with Unity Games not having System.Core.dll.
 
 ---
 
