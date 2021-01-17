@@ -206,7 +206,6 @@
 182. Fixed Issue with Games using a Unity Version older than 5.0 not Loading Mods.
 183. Fixed Issue with Games using a Unity Version older than 5.0 having mainData instead of globalgamemanagers.
 
-
 ---
 
 ### v0.2.7.4 Open-Beta:
