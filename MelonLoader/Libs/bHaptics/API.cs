@@ -27,8 +27,8 @@ namespace MelonLoader
 
         public static bool IsPlaying() => (!_waserror && bHaptics_NativeLibrary.IsPlaying());
         public static bool IsPlaying(string key) => (!_waserror && bHaptics_NativeLibrary.IsPlayingKey(key));
-        public static bool IsPlaying(PositionType type) => (!_waserror && bHaptics_NativeLibrary.IsDevicePlaying(type));
-
+        public static bool IsConnected(PositionType type) => (!_waserror && bHaptics_NativeLibrary.IsDevicePlaying(type));
+        public static bool IsConnected(DeviceType type, bool isLeft = true) => (!_waserror && bHaptics_NativeLibrary.IsDevicePlaying(DeviceTypeToPositionType(type, isLeft)));
         public static bool IsFeedbackRegistered(string key) => (!_waserror && bHaptics_NativeLibrary.IsFeedbackRegistered(key));
 
         public static void RegisterTactFileStr(string key, string tactFileStr) { if (!_waserror) bHaptics_NativeLibrary.RegisterFeedbackFromTactFile(key, tactFileStr); }
@@ -86,16 +86,44 @@ namespace MelonLoader
             return status;
         }
 
+        public static PositionType DeviceTypeToPositionType(DeviceType pos, bool isLeft = true)
+        {
+            switch (pos)
+            {
+                case DeviceType.Tactal:
+                    return PositionType.Head;
+                case DeviceType.TactSuit:
+                    return PositionType.Vest;
+                case DeviceType.Tactosy_arms:
+                    return isLeft ? PositionType.ForearmL : PositionType.ForearmR;
+                case DeviceType.Tactosy_feet:
+                    return isLeft ? PositionType.FootL : PositionType.FootR;
+                case DeviceType.Tactosy_hands:
+                    return isLeft ? PositionType.HandL : PositionType.HandR;
+            }
+
+            return PositionType.Head;
+        }
+
+        public enum DeviceType
+        {
+            None = 0,
+            Tactal = 1,
+            TactSuit = 2,
+            Tactosy_arms = 3,
+            Tactosy_hands = 4,
+            Tactosy_feet = 5
+        }
+
         public enum PositionType
         {
-            All = 0, Left = 1, Right = 2,
+            All = 0,
+            Left = 1, Right = 2,
             Vest = 3,
             Head = 4,
             Racket = 5,
-            HandL = 6,
-            HandR = 7,
-            FootL = 8,
-            FootR = 9,
+            HandL = 6, HandR = 7,
+            FootL = 8, FootR = 9,
             ForearmL = 10, ForearmR = 11,
             VestFront = 201, VestBack = 202,
             GloveLeft = 203, GloveRight = 204,

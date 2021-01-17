@@ -208,6 +208,9 @@
 184. Fixed Issue with Support Modules with Mono Games not having UnityEngine.Transform.SetAsLastSibling.
 185. Added Preload Support Module.
 186. Fixed Issue with Unity Games not having System.Core.dll.
+187. Added bHaptics.DeviceType.
+188. Added bHaptics.IsConnected.
+189. Added bHaptics.DeviceTypeToPositionType.
 
 ---
 
