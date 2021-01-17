@@ -2,7 +2,9 @@
 #include "Hook.h"
 #include <unordered_map>
 #include <math.h>
+#include <algorithm>
 #include "../Utils/Debug.h"
+#include "Game.h"
 #pragma warning(disable:4244)
 
 AssemblyVerifier::callOriginalLoadFrom_t AssemblyVerifier::callOriginalLoadFrom;
@@ -37,6 +39,8 @@ __forceinline void CountChars(const char* str, std::unordered_map<char, int>& ma
 
 __forceinline bool CheckAssembly(Mono::Image* image)
 {
+    const char* imagename = Mono::Exports::mono_image_get_name(image);
+
     auto moduleCount = Mono::Exports::mono_image_get_table_rows(image, Mono::MONO_TABLE_MODULE);
     if (moduleCount != 1)
         return false;

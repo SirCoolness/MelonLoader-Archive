@@ -180,6 +180,8 @@ public:
 		
 		MONODEF(void, mono_raise_exception, (Object *ex))
 		MONODEF(Object*, mono_get_exception_bad_image_format, (const char *msg))
+		MONODEF(const char*, mono_image_get_name, (Image* image))
+			
         MONODEF(Image*, mono_image_open_full, (const char *path, MonoImageOpenStatus* status, bool refonly))
         MONODEF(Image*, mono_image_open_from_data_full, (const char *data, unsigned int size, bool need_copy, MonoImageOpenStatus* status, bool refonly))
         MONODEF(void, mono_image_close, (Image* image))

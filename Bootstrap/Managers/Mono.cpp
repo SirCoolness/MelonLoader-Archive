@@ -51,6 +51,7 @@ MONODEF(g_free)
 
 MONODEF(mono_raise_exception)
 MONODEF(mono_get_exception_bad_image_format)
+MONODEF(mono_image_get_name);
 MONODEF(mono_image_open_full)
 MONODEF(mono_image_open_from_data_full)
 MONODEF(mono_image_close)
@@ -233,6 +234,7 @@ bool Mono::Exports::Initialize()
 	MONODEF(mono_object_get_class)
 	MONODEF(mono_class_get_property_from_name)
 	MONODEF(mono_property_get_get_method)
+	MONODEF(mono_image_get_name)
 
 	if (!IsOldMono)
 	{
