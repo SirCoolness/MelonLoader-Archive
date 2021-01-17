@@ -42,6 +42,7 @@ namespace MelonLoader
         public static void TurnOff() { if (!_waserror) bHaptics_NativeLibrary.TurnOff(); }
         public static void TurnOff(string key) { if (!_waserror) bHaptics_NativeLibrary.TurnOffKey(key); }
 
+        public static void Submit(string key, DeviceType type, bool isLeft, byte[] bytes, int durationMillis) => Submit(key, DeviceTypeToPositionType(type, isLeft), bytes, durationMillis);
         public static void Submit(string key, PositionType position, byte[] bytes, int durationMillis)
         {
             if (_waserror)
@@ -55,6 +56,7 @@ namespace MelonLoader
             }
             bHaptics_NativeLibrary.SubmitByteArray(key, position, bytes, MaxBufferSize, durationMillis);
         }
+        public static void Submit(string key, DeviceType type, bool isLeft, List<DotPoint> points, int durationMillis) => Submit(key, DeviceTypeToPositionType(type, isLeft), points, durationMillis);
         public static void Submit(string key, PositionType position, List<DotPoint> points, int durationMillis)
         {
             if (_waserror)
@@ -69,6 +71,7 @@ namespace MelonLoader
             }
             bHaptics_NativeLibrary.SubmitByteArray(key, position, bytes, MaxBufferSize, durationMillis);
         }
+        public static void Submit(string key, DeviceType type, bool isLeft, List<PathPoint> points, int durationMillis) => Submit(key, DeviceTypeToPositionType(type, isLeft), points, durationMillis);
         public static void Submit(string key, PositionType position, List<PathPoint> points, int durationMillis)
         {
             if (_waserror)
@@ -77,6 +80,7 @@ namespace MelonLoader
             bHaptics_NativeLibrary.SubmitPathArray(key, position, pathPoints, pathPoints.Length, durationMillis);
         }
 
+        public static FeedbackStatus GetCurrentFeedbackStatus(DeviceType type, bool isLeft = true) => GetCurrentFeedbackStatus(DeviceTypeToPositionType(type, isLeft));
         public static FeedbackStatus GetCurrentFeedbackStatus(PositionType pos)
         {
             if (_waserror)
