@@ -212,6 +212,8 @@
 188. Added bHaptics.IsDeviceConnected.
 189. Added bHaptics.DeviceTypeToPositionType.
 190. Added bHaptics.DeviceType Methods.
+191. Fixed Issue with Support Modules throwing a Target Framework Exception.
+192. Fixed Internal Failure with Operating Systems older than Windows 10.
 
 ---
 
