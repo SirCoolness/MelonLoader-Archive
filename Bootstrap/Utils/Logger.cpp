@@ -85,7 +85,7 @@ void Logger::WriteSpacer()
 	std::cout << std::endl;
 }
 
-void Logger::Msg(const char* txt)
+void Logger::Msg(Console::Color txtcolor, const char* txt)
 {
 	std::string timestamp = GetTimestamp();
 	LogFile << "[" << timestamp << "] " << txt << std::endl;
@@ -96,10 +96,10 @@ void Logger::Msg(const char* txt)
 		<< timestamp
 		<< Console::ColorToAnsi(Console::Color::Gray)
 		<< "] "
-		<< Console::ColorToAnsi(Console::Color::Gray)
+		<< Console::ColorToAnsi(txtcolor)
 		<< txt
 		<< std::endl
-		<< "\x1b[37m";
+		<< Console::ColorToAnsi(Console::Color::Gray, false);
 }
 
 void Logger::Warning(const char* txt)
@@ -120,7 +120,7 @@ void Logger::Warning(const char* txt)
 			<< "] [WARNING] "
 			<< txt
 			<< std::endl
-			<< "\x1b[37m";
+			<< Console::ColorToAnsi(Console::Color::Gray, false);
 }
 
 void Logger::Error(const char* txt)
@@ -140,10 +140,10 @@ void Logger::Error(const char* txt)
 		<< "] [ERROR] "
 		<< txt
 		<< std::endl
-		<< "\x1b[37m";
+		<< Console::ColorToAnsi(Console::Color::Gray, false);
 }
 
-void Logger::Internal_PrintModName(Console::Color color, const char* name, const char* version)
+void Logger::Internal_PrintModName(Console::Color meloncolor, const char* name, const char* version)
 {
 	std::string timestamp = GetTimestamp();
 	LogFile << "[" << timestamp << "] " << name << " v" << version << std::endl;
@@ -154,21 +154,21 @@ void Logger::Internal_PrintModName(Console::Color color, const char* name, const
 		<< timestamp
 		<< Console::ColorToAnsi(Console::Color::Gray)
 		<< "] "
-		<< Console::ColorToAnsi(color)
+		<< Console::ColorToAnsi(meloncolor)
 		<< name
 		<< Console::ColorToAnsi(Console::Color::Gray)
 		<< " v"
 		<< Console::ColorToAnsi(Console::Color::Gray)
 		<< version
 		<< std::endl
-		<< "\x1b[37m";
+		<< Console::ColorToAnsi(Console::Color::Gray, false);
 }
 
-void Logger::Internal_Msg(Console::Color color, const char* namesection, const char* txt)
+void Logger::Internal_Msg(Console::Color meloncolor, Console::Color txtcolor, const char* namesection, const char* txt)
 {
 	if (namesection == NULL)
 	{
-		Msg(txt);
+		Msg(txtcolor, txt);
 		return;
 	}
 	std::string timestamp = GetTimestamp();
@@ -182,14 +182,14 @@ void Logger::Internal_Msg(Console::Color color, const char* namesection, const c
 		<< "] "
 		<< Console::ColorToAnsi(Console::Color::Gray)
 		<< "["
-		<< Console::ColorToAnsi(color)
+		<< Console::ColorToAnsi(meloncolor)
 		<< namesection
 		<< Console::ColorToAnsi(Console::Color::Gray)
 		<< "] "
-		<< Console::ColorToAnsi(Console::Color::Gray)
+		<< Console::ColorToAnsi(txtcolor)
 		<< txt
 		<< std::endl
-		<< "\x1b[37m";
+		<< Console::ColorToAnsi(Console::Color::Gray, false);
 }
 
 void Logger::Internal_Warning(const char* namesection, const char* txt)
@@ -217,7 +217,7 @@ void Logger::Internal_Warning(const char* namesection, const char* txt)
 			<< "] [WARNING] "
 			<< txt
 			<< std::endl
-			<< "\x1b[37m";
+			<< Console::ColorToAnsi(Console::Color::Gray, false);
 }
 
 void Logger::Internal_Error(const char* namesection, const char* txt)
@@ -244,5 +244,5 @@ void Logger::Internal_Error(const char* namesection, const char* txt)
 		<< "] [ERROR] "
 		<< txt
 		<< std::endl
-		<< "\x1b[37m";
+		<< Console::ColorToAnsi(Console::Color::Gray, false);
 }

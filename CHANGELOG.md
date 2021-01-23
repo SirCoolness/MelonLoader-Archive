@@ -217,6 +217,12 @@
 193. Fixed Issue with C# 9 Record Types making Assemblies Unloadable.    (Credits to knah :D)
 194. Added Melon Hashes to Logs.   (Credits to TrevTV :P)
 195. Temporarily Disabled Analytics Blocker for x86 (32bit) to Fix Random Crash Issue.
+196. Fixed Issue with Console Coloring on Operating Systems older than Windows 10.
+197. Fixed Issue with app.info Does Not Exist Warning showing Twice.
+198. Re-Implemented Color Variations of MelonLogger.Msg.
+199. Fixed Issue with Melon Logging Traceback not finding certain Melons in the Call Stack.
+200. Replaced Il2CppDumper with Cpp2IL.
+201. Added MDB Symbol Support.    (Credits to avail :P)
 
 ---
 
